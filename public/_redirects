@@ -1,1 +1,2 @@
-https://www.brazilianwax.education/* https://brazilianwax.education/:splat 301
+# Workers Static Assets _redirects only supports relative URLs (not absolute domains).
+# Configure www → apex redirect in Cloudflare Dashboard → Rules → Redirect Rules.
