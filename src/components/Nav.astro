@@ -1,0 +1,58 @@
+---
+import { ACQUISITION_MAILTO } from '../config/site';
+---
+
+<nav class="bg-white/95 backdrop-blur-md border-b border-[#EDE4D7] sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-x-3">
+        <div class="flex items-center gap-x-2">
+          <div class="w-9 h-9 bg-[#B85C38] rounded-2xl flex items-center justify-center">
+            <span class="text-white text-2xl font-bold tracking-tighter">BW</span>
+          </div>
+          <div>
+            <span class="font-semibold text-2xl tracking-tight">brazilianwax</span>
+            <span class="font-semibold text-2xl tracking-tight text-[#B85C38]">.education</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-x-3">
+        <a
+          href="#why"
+          class="hidden md:block px-5 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
+          >Why This Domain</a
+        >
+        <a
+          href="#training"
+          class="hidden md:block px-5 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
+          >The Training</a
+        >
+        <a
+          href="#market"
+          class="hidden md:block px-5 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
+          >Market Opportunity</a
+        >
+
+        <a
+          href={ACQUISITION_MAILTO}
+          class="inline-flex items-center justify-center px-7 py-2.5 bg-[#B85C38] hover:bg-[#A04E30] text-white text-sm font-semibold rounded-2xl transition-all active:scale-[0.985]"
+        >
+          Inquire to Acquire
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    if (window.scrollY > 20) {
+      nav.classList.add('nav-scrolled', 'bg-white/95');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  });
+</script>

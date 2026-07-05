@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('market')).sort((a, b) => a.data.order - b.data.order);
+const overview = items.find((item) => item.data.type === 'overview');
+const projection = items.find((item) => item.data.type === 'projection');
+---
+
+<section id="market" class="max-w-6xl mx-auto px-6 py-16">
+  <div class="text-center mb-12">
+    <div class="modern-pill inline-block mb-3">BOOMING MARKET OPPORTUNITY</div>
+    <h2 class="section-header tracking-tight">
+      Capitalize on the massive demand for Brazilian waxing
+    </h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 mb-12">
+    {
+      overview && (
+        <div class="clean-section rounded-3xl p-8">
+          <h3 class="font-semibold text-xl mb-4">{overview.data.title}</h3>
+          <div class="space-y-4 text-[#5C5C5C]">
+            <p>
+              The U.S. hair removal services industry is valued at approximately{' '}
+              <strong>$5 billion</strong> and continues to grow steadily, with strong demand for
+              professional waxing services.
+            </p>
+            <p>
+              Brazilian waxing is one of the most popular and recurring services in salons nationwide.
+              With over 130,000 hair removal businesses in the U.S., the opportunity for trained
+              professionals is significant.
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      projection && projection.data.rows && (
+        <div class="clean-section rounded-3xl p-8">
+          <h3 class="font-semibold text-xl mb-4">{projection.data.title}</h3>
+          <div class="space-y-4">
+            {projection.data.rows.map((row) => (
+              <div
+                class:list={[
+                  'flex justify-between items-center',
+                  row.highlight ? 'pt-2' : 'border-b border-[#EDE4D7] pb-3',
+                ]}
+              >
+                <span class:list={[row.highlight ? 'font-semibold' : 'text-[#5C5C5C]']}>
+                  {row.label}
+                </span>
+                <span
+                  class:list={[
+                    row.highlight
+                      ? 'font-bold text-xl text-[#B85C38] stat-number'
+                      : 'font-semibold stat-number',
+                  ]}
+                >
+                  {row.value}
+                </span>
+              </div>
+            ))}
+            {projection.data.footnote && (
+              <p class="text-xs text-[#6B6B6B] mt-2">*{projection.data.footnote}</p>
+            )}
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="text-center">
+    <p class="max-w-2xl mx-auto text-[#5C5C5C]">
+      With proper training and business skills from brazilianwax.education, graduates are positioned
+      to enter a high-demand market and build profitable, sustainable businesses quickly.
+    </p>
+  </div>
+</section>
