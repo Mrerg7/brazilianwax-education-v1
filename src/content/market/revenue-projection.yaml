@@ -3,12 +3,12 @@ type: projection
 rows:
   - label: Per Service
     value: $75
-  - label: 4 Services per Day (realistic)
-    value: $300/day
+  - label: 8 Services per Day (realistic)
+    value: $600/day
   - label: 5 Days per Week
-    value: $1,500/week
+    value: $3,000/week
   - label: Annual Revenue Potential
-    value: $75,000+
+    value: $150,000+
     highlight: true
 footnote: Based on 50 working weeks. Many technicians earn significantly more with add-on services and a full client book.
 order: 2
