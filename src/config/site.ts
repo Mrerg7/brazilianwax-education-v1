@@ -6,7 +6,7 @@ export const SITE = {
   url: 'https://brazilianwax.education/',
   email: 'sales@desertrich.com',
   locale: 'en_US',
-  googleSiteVerification: '',
+  googleSiteVerification: 'AHILggxEpimiKsgI7ExBg1zG5a2AS0aWwxCTDZWitkQ',
 } as const;
 
 export const CF_IMAGES = {
