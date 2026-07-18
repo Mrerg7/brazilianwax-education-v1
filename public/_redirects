@@ -1,2 +1,4 @@
-# Workers Static Assets _redirects only supports relative URLs (not absolute domains).
-# Configure www → apex redirect in Cloudflare Dashboard → Rules → Redirect Rules.
+# Redirect duplicate URL variants to the canonical homepage
+/index        /    301
+/index/       /    301
+/index.html   /    301
