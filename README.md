@@ -29,7 +29,8 @@ npm run deploy
 | File | Purpose |
 |------|---------|
 | `astro.config.mjs` | Astro site URL, sitemap, Tailwind |
-| `wrangler.toml` | Workers Static Assets (`./dist`) |
+| `wrangler.toml` | Workers Static Assets (`./dist`) + Worker-first routing |
+| `src/worker.ts` | 301 www/HTTP → `https://brazilianwax.education` (canonical) |
 | `src/config/site.ts` | Domain, email, OG image, mailto CTA |
 
 ## Acquisition Contact

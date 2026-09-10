@@ -17,7 +17,8 @@ const {
 } = Astro.props;
 
 const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-const canonicalURL = new URL(pathname, SITE.url);
+// Always canonicalize indexable pages to the apex site URL; noindex pages point home.
+const canonicalURL = noindex ? new URL('/', SITE.url) : new URL(pathname, SITE.url);
 const publishedDate = '2026-07-05';
 
 const structuredData = {
