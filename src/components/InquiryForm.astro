@@ -1,0 +1,163 @@
+---
+import { SITE } from '../config/site';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'offer-form' } = Astro.props;
+const uses = [
+  'Certification academy',
+  'Online course / LMS',
+  'Salon staff training portal',
+  'Product manufacturer education',
+  'Workshop or bootcamp series',
+  'Investment hold',
+  'Other',
+];
+---
+
+<form id={id} class="offer-form text-left" novalidate data-email={SITE.email} data-domain={SITE.name}>
+  <div class="grid sm:grid-cols-2 gap-3">
+    <label class="block">
+      <span class="block text-xs font-semibold tracking-wide text-[#4A5D4A] mb-1.5">Name</span>
+      <input
+        class="field"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        maxlength="80"
+        placeholder="Your name"
+      />
+    </label>
+    <label class="block">
+      <span class="block text-xs font-semibold tracking-wide text-[#4A5D4A] mb-1.5">Email</span>
+      <input
+        class="field"
+        name="email"
+        type="email"
+        autocomplete="email"
+        inputmode="email"
+        required
+        maxlength="120"
+        placeholder="you@academy.com"
+      />
+    </label>
+    <label class="block">
+      <span class="block text-xs font-semibold tracking-wide text-[#4A5D4A] mb-1.5">Offer (USD)</span>
+      <input
+        class="field"
+        name="offer"
+        type="text"
+        inputmode="decimal"
+        maxlength="20"
+        placeholder={`Asking $${Number(SITE.askingPrice).toLocaleString('en-US')}`}
+      />
+    </label>
+    <label class="block">
+      <span class="block text-xs font-semibold tracking-wide text-[#4A5D4A] mb-1.5">Intended use</span>
+      <select class="field" name="use">
+        <option value="">Select one</option>
+        {uses.map((use) => <option value={use}>{use}</option>)}
+      </select>
+    </label>
+  </div>
+  <label class="block mt-3">
+    <span class="block text-xs font-semibold tracking-wide text-[#4A5D4A] mb-1.5">Message</span>
+    <textarea
+      class="field min-h-28 resize-y"
+      name="message"
+      required
+      maxlength="2000"
+      placeholder="Timing, escrow preference, or questions."
+    ></textarea>
+  </label>
+  <p class="form-error mt-3 text-sm text-[#9B2C2C] hidden" role="alert"></p>
+  <button
+    type="submit"
+    class="mt-4 inline-flex w-full items-center justify-center gap-x-2 min-h-12 px-6 py-3 bg-[#B85C38] hover:bg-[#A04E30] text-white font-semibold rounded-2xl transition-all active:scale-[0.985]"
+  >
+    Send offer by email
+  </button>
+  <p class="form-status mt-3 text-sm text-[#2D2D2D] hidden" role="status"></p>
+  <p class="mt-3 text-xs leading-relaxed text-[#6B6B6B]">
+    Opens your email app with the offer filled in, addressed to {SITE.email}. Nothing is stored on this
+    website. If mail does not open, paste the copied message.
+  </p>
+</form>
+
+<script>
+  function wire(form: HTMLFormElement) {
+    const error = form.querySelector('.form-error');
+    const status = form.querySelector('.form-status');
+    const email = form.dataset.email || '';
+    const domain = form.dataset.domain || 'brazilianwax.education';
+
+    const show = (el: Element | null, text: string) => {
+      if (!(el instanceof HTMLElement)) return;
+      el.textContent = text;
+      el.classList.toggle('hidden', text.length === 0);
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      show(error, '');
+      show(status, '');
+
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const from = String(data.get('email') || '').trim();
+      const offer = String(data.get('offer') || '').trim();
+      const use = String(data.get('use') || '').trim();
+      const message = String(data.get('message') || '').trim();
+
+      if (name.length < 2) {
+        show(error, 'Add your name so the seller knows who to reply to.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(from)) {
+        show(error, 'Enter a real email address for the reply.');
+        return;
+      }
+      if (message.length < 8) {
+        show(error, 'Add a short note — timing, escrow, or why you want the name.');
+        return;
+      }
+
+      const body = [
+        'Hello,',
+        '',
+        `I would like to acquire ${domain}.`,
+        '',
+        `Name: ${name}`,
+        `Email: ${from}`,
+        `Offer (USD): ${offer || 'Not specified'}`,
+        `Intended use: ${use || 'Not specified'}`,
+        '',
+        message,
+      ].join('\n');
+
+      const subject = `Offer for ${domain}`;
+      const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      try {
+        await navigator.clipboard.writeText(`To: ${email}\nSubject: ${subject}\n\n${body}`);
+        show(
+          status,
+          'Offer copied. Your email app should open — if it does not, paste the copied message to ' +
+            email +
+            '.',
+        );
+      } catch {
+        show(status, 'Your email app should open. If it does not, email ' + email + ' with your offer.');
+      }
+
+      window.location.href = mailto;
+    });
+  }
+
+  document.querySelectorAll('form.offer-form').forEach((form) => {
+    if (form instanceof HTMLFormElement) wire(form);
+  });
+</script>

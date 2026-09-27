@@ -1,0 +1,30 @@
+---
+import { FAQS } from '../data/faqs';
+---
+
+<section id="faq" class="bg-white border-y border-[#EDE4D7]">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+    <div class="text-center mb-8">
+      <div class="modern-pill inline-block mb-3">BUYER QUESTIONS</div>
+      <h2 class="section-header tracking-tight">Straight answers before you offer</h2>
+    </div>
+    <div class="space-y-3">
+      {
+        FAQS.map((item) => (
+          <details class="clean-section rounded-2xl px-5 py-4 group">
+            <summary class="cursor-pointer font-semibold text-base sm:text-lg min-h-11 flex items-center justify-between gap-4 list-none">
+              <span>{item.q}</span>
+              <span
+                class="text-[#B85C38] shrink-0 group-open:rotate-45 transition-transform text-xl leading-none"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </summary>
+            <p class="pt-3 text-sm sm:text-base leading-relaxed text-[#5C5C5C]">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

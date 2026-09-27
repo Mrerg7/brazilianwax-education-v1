@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
+
+const useCases = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="uses" class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+  <div class="text-center mb-10 max-w-3xl mx-auto">
+    <div class="modern-pill inline-block mb-3">WHO IT FITS</div>
+    <h2 class="section-header tracking-tight">Six education businesses this domain can front</h2>
+    <p class="mt-4 text-[#5C5C5C] leading-relaxed">
+      Exact keywords for Brazilian waxing plus the trusted .education TLD — ready for an academy,
+      LMS, franchise portal, or product-led training brand.
+    </p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    {
+      useCases.map(({ data }) => (
+        <article class="value-card clean-section rounded-3xl p-6">
+          <h3 class="font-semibold text-base flex items-center gap-3 mb-3">
+            <Icon name={data.icon} class="w-5 h-5 text-[#B85C38] shrink-0" />
+            {data.title}
+          </h3>
+          <p class="text-[#5C5C5C] text-sm leading-relaxed">{data.description}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

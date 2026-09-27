@@ -1,5 +1,4 @@
 ---
-import { ACQUISITION_MAILTO } from '../config/site';
 ---
 
 <nav class="bg-white/95 backdrop-blur-md border-b border-[#EDE4D7] sticky top-0 z-50">
@@ -7,38 +6,43 @@ import { ACQUISITION_MAILTO } from '../config/site';
     <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
       <a href="/" class="flex items-center gap-x-2 sm:gap-x-3 min-w-0">
         <div class="flex items-center gap-x-2 min-w-0">
-          <div class="w-8 h-8 sm:w-9 sm:h-9 bg-[#B85C38] rounded-2xl flex items-center justify-center shrink-0">
+          <div
+            class="w-8 h-8 sm:w-9 sm:h-9 bg-[#B85C38] rounded-2xl flex items-center justify-center shrink-0"
+          >
             <span class="text-white text-xl sm:text-2xl font-bold tracking-tighter">BW</span>
           </div>
           <div class="min-w-0 leading-tight">
-            <span class="font-semibold text-base sm:text-xl md:text-2xl tracking-tight">brazilianwax</span>
-            <span class="font-semibold text-base sm:text-xl md:text-2xl tracking-tight text-[#B85C38]">.education</span>
+            <span class="font-semibold text-base sm:text-xl md:text-2xl tracking-tight"
+              >brazilianwax</span
+            >
+            <span class="font-semibold text-base sm:text-xl md:text-2xl tracking-tight text-[#B85C38]"
+              >.education</span
+            >
           </div>
         </div>
       </a>
 
-      <div class="flex items-center gap-x-2 sm:gap-x-3 shrink-0">
+      <div class="flex items-center gap-x-1 sm:gap-x-2 shrink-0">
         <a
-          href="#why"
-          class="hidden md:block px-5 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
+          href="/#why"
+          class="hidden lg:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
           >Why This Domain</a
         >
         <a
-          href="#training"
-          class="hidden md:block px-5 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
-          >The Training</a
+          href="/#uses"
+          class="hidden lg:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
+          >Use Cases</a
         >
         <a
-          href="#market"
-          class="hidden md:block px-5 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
-          >Market Opportunity</a
+          href="/brazilian-waxing-training/"
+          class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors"
+          >Training Guide</a
         >
-
         <a
-          href={ACQUISITION_MAILTO}
-          class="inline-flex items-center justify-center px-4 sm:px-7 py-2 sm:py-2.5 bg-[#B85C38] hover:bg-[#A04E30] text-white text-xs sm:text-sm font-semibold rounded-2xl transition-all active:scale-[0.985] whitespace-nowrap"
+          href="/acquire/"
+          class="inline-flex items-center justify-center min-h-10 px-4 sm:px-7 py-2 sm:py-2.5 bg-[#B85C38] hover:bg-[#A04E30] text-white text-xs sm:text-sm font-semibold rounded-2xl transition-all active:scale-[0.985] whitespace-nowrap"
         >
-          Inquire to Acquire
+          Acquire Domain
         </a>
       </div>
     </div>

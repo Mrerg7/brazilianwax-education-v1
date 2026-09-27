@@ -1,12 +1,15 @@
 export const SITE = {
   name: 'brazilianwax.education',
-  title: 'brazilianwax.education • Premium Domain for Sale | Brazilian Waxing Training',
+  title: 'brazilianwax.education for Sale | Brazilian Waxing Training Domain',
   description:
-    'Own brazilianwax.education — the definitive domain for professional Brazilian waxing education, epilation training, and business startup programs.',
-  url: 'https://brazilianwax.education/',
+    'brazilianwax.education is for sale — the definitive .education domain for Brazilian waxing training, epilation certification, and beauty-business education. Escrow welcome.',
+  url: 'https://brazilianwax.education',
   email: 'sales@desertrich.com',
   locale: 'en_US',
   googleSiteVerification: 'AHILggxEpimiKsgI7ExBg1zG5a2AS0aWwxCTDZWitkQ',
+  published: '2026-07-05',
+  modified: '2026-09-27',
+  askingPrice: '9500',
 } as const;
 
 export const CF_IMAGES = {
@@ -20,6 +23,6 @@ export function cfImageUrl(imageId: string, variant = 'public'): string {
 
 export const OG_IMAGE = cfImageUrl(CF_IMAGES.heroImageId);
 
-export const ACQUISITION_MAILTO = `mailto:${SITE.email}?subject=${encodeURIComponent('Acquisition Inquiry - brazilianwax.education')}&body=${encodeURIComponent('Hello,\n\nI am interested in acquiring brazilianwax.education. Please provide details and next steps.\n\nBest regards,')}`;
+export const ACQUISITION_MAILTO = `mailto:${SITE.email}?subject=${encodeURIComponent('Offer for brazilianwax.education')}&body=${encodeURIComponent('Hello,\n\nI would like to acquire brazilianwax.education.\n\nName:\nEmail:\nOffer (USD):\nIntended use:\n\nMessage:\n')}`;
 
-export const DISCLAIMER_DATE = 'July 5, 2026';
+export const DISCLAIMER_DATE = 'September 27, 2026';

@@ -40,4 +40,14 @@ const market = defineCollection({
   }),
 });
 
-export const collections = { why, training, market };
+const useCases = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    icon: z.string(),
+    order: z.number(),
+  }),
+});
+
+export const collections = { why, training, market, useCases };

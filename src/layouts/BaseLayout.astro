@@ -1,12 +1,19 @@
 ---
 import '../styles/global.css';
-import { SITE, OG_IMAGE, ACQUISITION_MAILTO } from '../config/site';
+import StickyOffer from '../components/StickyOffer.astro';
+import { OG_IMAGE, SITE } from '../config/site';
+import { buildSchema, type Crumb } from '../lib/schema';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  path?: string;
+  crumbs?: Crumb[];
+  includeFaq?: boolean;
+  article?: boolean;
+  preloadImage?: string;
 }
 
 const {
@@ -14,146 +21,46 @@ const {
   description = SITE.description,
   ogImage = OG_IMAGE,
   noindex = false,
+  path = Astro.url.pathname,
+  crumbs,
+  includeFaq = false,
+  article = false,
+  preloadImage,
 } = Astro.props;
 
-const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-// Always canonicalize indexable pages to the apex site URL; noindex pages point home.
-const canonicalURL = noindex ? new URL('/', SITE.url) : new URL(pathname, SITE.url);
-const publishedDate = '2026-07-05';
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE.url}#website`,
-      url: SITE.url,
-      name: SITE.name,
-      description,
-      inLanguage: 'en-US',
-    },
-    {
-      '@type': 'WebPage',
-      '@id': `${SITE.url}#webpage`,
-      url: SITE.url,
-      name: title,
-      description,
-      isPartOf: { '@id': `${SITE.url}#website` },
-      datePublished: publishedDate,
-      dateModified: publishedDate,
-      inLanguage: 'en-US',
-      primaryImageOfPage: {
-        '@type': 'ImageObject',
-        url: OG_IMAGE,
-      },
-    },
-    {
-      '@type': 'Product',
-      '@id': `${SITE.url}#product`,
-      name: 'brazilianwax.education Premium Domain Name',
-      description:
-        'The definitive .education domain for professional Brazilian waxing training, epilation certification, and business startup programs. Available for acquisition.',
-      url: SITE.url,
-      image: OG_IMAGE,
-      category: 'Premium Domain Name',
-      brand: {
-        '@type': 'Brand',
-        name: SITE.name,
-      },
-      offers: {
-        '@type': 'Offer',
-        url: ACQUISITION_MAILTO,
-        price: '9500',
-        priceCurrency: 'USD',
-        availability: 'https://schema.org/InStock',
-        seller: {
-          '@type': 'Organization',
-          name: 'Desert Rich',
-          email: SITE.email,
-        },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: {
-            '@type': 'MonetaryAmount',
-            value: '0.00',
-            currency: 'USD',
-          },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 1,
-              unitCode: 'DAY',
-            },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY',
-            },
-          },
-          shippingDestination: {
-            '@type': 'DefinedRegion',
-            addressCountry: 'US',
-          },
-        },
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-          returnMethod: 'https://schema.org/ReturnByMail',
-          returnFees: 'https://schema.org/FreeReturn',
-          applicableCountry: 'US',
-          merchantReturnDays: 0,
-        },
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
-        bestRating: '5',
-        ratingCount: '1',
-      },
-      review: {
-        '@type': 'Review',
-        author: {
-          '@type': 'Organization',
-          name: 'Desert Rich',
-        },
-        reviewBody:
-          'The definitive .education domain for professional Brazilian waxing training and business startup programs — unmatched brand authority for this high-demand education niche.',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-          bestRating: '5',
-        },
-      },
-    },
-    {
-      '@type': 'EducationalOrganization',
-      '@id': `${SITE.url}#organization`,
-      name: SITE.name,
-      url: SITE.url,
-      description:
-        'Demonstration site illustrating the potential of brazilianwax.education for Brazilian waxing education and professional training.',
-      email: SITE.email,
-    },
-  ],
-};
+const normalizedPath = path.endsWith('/') || path === '/' ? path : `${path}/`;
+const canonicalURL = noindex ? new URL('/', SITE.url) : new URL(normalizedPath, SITE.url);
+const structuredData = buildSchema({
+  title,
+  description,
+  path: noindex ? '/' : normalizedPath,
+  crumbs,
+  includeFaq,
+  article,
+});
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#F8F1E9" />
+    <meta name="author" content="Desert Rich" />
+    <meta name="format-detection" content="telephone=no" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
+    <meta
+      name="robots"
+      content={noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
     <link rel="canonical" href={canonicalURL} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
@@ -164,9 +71,10 @@ const structuredData = {
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="brazilianwax.education — Premium Domain for Brazilian Waxing Training"
+      content="brazilianwax.education — premium Brazilian waxing training domain for sale"
     />
     <meta property="og:locale" content={SITE.locale} />
+    {article && <meta property="article:modified_time" content={SITE.modified} />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -174,20 +82,37 @@ const structuredData = {
     <meta name="twitter:image" content={ogImage} />
     <meta
       name="twitter:image:alt"
-      content="brazilianwax.education — Premium Domain for Brazilian Waxing Training"
+      content="brazilianwax.education — premium Brazilian waxing training domain for sale"
     />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {SITE.googleSiteVerification && (
-      <meta name="google-site-verification" content={SITE.googleSiteVerification} />
-    )}
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    {
+      SITE.googleSiteVerification && (
+        <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+      )
+    }
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://imagedelivery.net" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
     />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
-  <body>
+  <body class="pb-20 md:pb-0">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:bg-white focus:px-4 focus:py-2 focus:rounded-xl"
+    >
+      Skip to content
+    </a>
     <slot />
+    {!noindex && <StickyOffer />}
   </body>
 </html>

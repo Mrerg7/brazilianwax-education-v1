@@ -1,14 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
 
 const modules = (await getCollection('training')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section id="training" class="bg-white border-y border-[#EDE4D7]">
-  <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+<section id="training" class="bg-white border-y border-[#EDE4D7] scroll-mt-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-20">
     <div class="text-center mb-12">
       <div class="modern-pill inline-block mb-3">COMPREHENSIVE CURRICULUM</div>
       <h2 class="section-header tracking-tight">Master Epilation &amp; Launch Your Business</h2>
+      <p class="mt-4 max-w-2xl mx-auto text-[#5C5C5C] leading-relaxed">
+        The domain name matches the curriculum buyers expect — core Brazilian waxing skills plus the
+        business training needed to open and grow a profitable studio.
+      </p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
@@ -19,7 +24,7 @@ const modules = (await getCollection('training')).sort((a, b) => a.data.order - 
             <ul class="space-y-3 text-[#5C5C5C]">
               {data.items.map((item) => (
                 <li class="flex items-start gap-x-3">
-                  <i class="fa-solid fa-check text-[#B85C38] mt-1" />
+                  <Icon name="fa-check" class="w-4 h-4 text-[#B85C38] mt-1 shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

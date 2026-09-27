@@ -1,0 +1,17 @@
+{
+  "name": "brazilianwax.education for sale",
+  "short_name": "brazilianwax.education",
+  "description": "Premium Brazilian waxing training domain for sale.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F8F1E9",
+  "theme_color": "#F8F1E9",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

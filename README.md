@@ -1,14 +1,22 @@
 # brazilianwax.education
 
-Premium domain acquisition landing page for **brazilianwax.education** — built with Astro static output and deployed to Cloudflare Workers Static Assets.
+Premium domain acquisition landing page for **brazilianwax.education** — Astro static output deployed to Cloudflare Workers Static Assets.
 
 ## Stack
 
-- [Astro](https://astro.build) — static site generator (`output: 'static'`, no adapter)
+- [Astro](https://astro.build) — static site generator (`output: 'static'`)
 - [Tailwind CSS](https://tailwindcss.com) — styling
-- [Content Collections](https://docs.astro.build/en/guides/content-collections/) — curriculum, market data, and value props
-- [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) — global edge hosting
-- [Cloudflare Images](https://developers.cloudflare.com/images/) — hero imagery CDN
+- Content collections — curriculum, market data, use cases, value props
+- Cloudflare Workers Static Assets — edge hosting with www/HTTP → apex 301s
+- Cloudflare Images — hero imagery CDN
+
+## Pages
+
+| Path | Purpose |
+|------|---------|
+| `/` | Domain sales landing + FAQ |
+| `/acquire/` | Offer form, escrow details, asking price |
+| `/brazilian-waxing-training/` | SEO guide for training keyword intent |
 
 ## Development
 
@@ -28,11 +36,11 @@ npm run deploy
 
 | File | Purpose |
 |------|---------|
-| `astro.config.mjs` | Astro site URL, sitemap, Tailwind |
-| `wrangler.toml` | Workers Static Assets (`./dist`) + Worker-first routing |
-| `src/worker.ts` | 301 www/HTTP → `https://brazilianwax.education` (canonical) |
-| `src/config/site.ts` | Domain, email, OG image, mailto CTA |
+| `astro.config.mjs` | Site URL, sitemap, Tailwind |
+| `wrangler.toml` | Workers Static Assets + Worker-first routing |
+| `src/worker.ts` | 301 www/HTTP → `https://brazilianwax.education` |
+| `src/config/site.ts` | Domain, email, asking price, OG image |
 
 ## Acquisition Contact
 
-**sales@desertrich.com**
+**sales@desertrich.com** · Asking **$9,500** · Escrow.com preferred

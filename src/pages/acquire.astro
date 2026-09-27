@@ -1,0 +1,89 @@
+---
+import Footer from '../components/Footer.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import Nav from '../components/Nav.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ACQUISITION_MAILTO, SITE } from '../config/site';
+
+const title = 'Make an Offer | brazilianwax.education Domain for Sale';
+const description =
+  'Offer to buy brazilianwax.education — the definitive Brazilian waxing training domain. Asking $9,500. Escrow welcome. Reply within one business day.';
+const asking = Number(SITE.askingPrice).toLocaleString('en-US');
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/acquire/"
+  crumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Make an offer', path: '/acquire/' },
+  ]}
+>
+  <Nav />
+  <main id="main">
+    <header class="bg-[#2D2D2D] text-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+        <p class="text-xs font-bold tracking-[0.18em] text-[#E8A07A] mb-3">
+          DOMAIN FOR SALE · ASKING ${asking}
+        </p>
+        <h1 class="font-display text-4xl sm:text-5xl tracking-tight">
+          Acquire brazilianwax.education
+        </h1>
+        <p class="mt-4 text-lg text-white/75 leading-relaxed">
+          You are buying the domain name, not an operating academy, a student roster, or a promise of
+          rankings. Domain Authority is earned after you own it and publish.
+        </p>
+      </div>
+    </header>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid lg:grid-cols-[0.9fr_1.1fr] gap-10">
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-xl font-semibold mb-3">What you get</h2>
+          <ul class="space-y-2 text-[#4A5D4A] leading-relaxed">
+            <li>The .education domain brazilianwax.education</li>
+            <li>A standard registrar transfer once escrow clears</li>
+            <li>This sales site only if you want it left in place during the handoff</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-3">What you do not get</h2>
+          <ul class="space-y-2 text-[#4A5D4A] leading-relaxed">
+            <li>A working academy, LMS, staff, or student enrollment system</li>
+            <li>A guaranteed Moz DA, Google ranking, or traffic number</li>
+            <li>Trademark rights in “Brazilian wax” — those words are descriptive</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-3">How payment works</h2>
+          <p class="text-[#4A5D4A] leading-relaxed">
+            Escrow.com is preferred. Another licensed escrow service is fine if both sides agree. Do
+            not wire a stranger outside escrow. The seller’s only sales address on this site is
+            <a class="text-[#B85C38] font-semibold" href={ACQUISITION_MAILTO}>{SITE.email}</a>.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-3">Why buyers choose this name</h2>
+          <p class="text-[#4A5D4A] leading-relaxed">
+            Exact match for Brazilian waxing education searches, paired with the .education TLD that
+            signals training and certification. Ideal for academies, course platforms, and product-led
+            education brands. Read the
+            <a class="text-[#B85C38] font-semibold" href="/brazilian-waxing-training/"
+              >training guide</a
+            > for keyword context.
+          </p>
+        </div>
+      </div>
+
+      <div id="inquire" class="clean-section rounded-3xl p-5 sm:p-8 scroll-mt-24">
+        <h2 class="text-2xl font-semibold tracking-tight mb-1">Send a private offer</h2>
+        <p class="text-sm text-[#5C5C5C] mb-5">
+          Asking ${asking}. Serious notes are answered within one business day.
+        </p>
+        <InquiryForm id="offer-form-acquire" />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

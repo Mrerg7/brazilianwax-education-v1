@@ -6,7 +6,7 @@ const overview = items.find((item) => item.data.type === 'overview');
 const projection = items.find((item) => item.data.type === 'projection');
 ---
 
-<section id="market" class="max-w-6xl mx-auto px-6 py-16">
+<section id="market" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 scroll-mt-24">
   <div class="text-center mb-12">
     <div class="modern-pill inline-block mb-3">BOOMING MARKET OPPORTUNITY</div>
     <h2 class="section-header tracking-tight">
@@ -14,10 +14,10 @@ const projection = items.find((item) => item.data.type === 'projection');
     </h2>
   </div>
 
-  <div class="grid md:grid-cols-2 gap-8 mb-12">
+  <div class="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12">
     {
       overview && (
-        <div class="clean-section rounded-3xl p-8">
+        <div class="clean-section rounded-3xl p-6 sm:p-8">
           <h3 class="font-semibold text-xl mb-4">{overview.data.title}</h3>
           <div class="space-y-4 text-[#5C5C5C]">
             <p>
@@ -28,7 +28,7 @@ const projection = items.find((item) => item.data.type === 'projection');
             <p>
               Brazilian waxing is one of the most popular and recurring services in salons nationwide.
               With over 130,000 hair removal businesses in the U.S., the opportunity for trained
-              professionals is significant.
+              professionals — and for the academies that train them — is significant.
             </p>
           </div>
         </div>
@@ -37,13 +37,13 @@ const projection = items.find((item) => item.data.type === 'projection');
 
     {
       projection && projection.data.rows && (
-        <div class="clean-section rounded-3xl p-8">
+        <div class="clean-section rounded-3xl p-6 sm:p-8">
           <h3 class="font-semibold text-xl mb-4">{projection.data.title}</h3>
           <div class="space-y-4">
             {projection.data.rows.map((row) => (
               <div
                 class:list={[
-                  'flex justify-between items-center',
+                  'flex justify-between items-center gap-3',
                   row.highlight ? 'pt-2' : 'border-b border-[#EDE4D7] pb-3',
                 ]}
               >
@@ -52,6 +52,7 @@ const projection = items.find((item) => item.data.type === 'projection');
                 </span>
                 <span
                   class:list={[
+                    'shrink-0',
                     row.highlight
                       ? 'font-bold text-xl text-[#B85C38] stat-number'
                       : 'font-semibold stat-number',
@@ -72,8 +73,8 @@ const projection = items.find((item) => item.data.type === 'projection');
 
   <div class="text-center">
     <p class="max-w-2xl mx-auto text-[#5C5C5C]">
-      With proper training and business skills from brazilianwax.education, graduates are positioned
-      to enter a high-demand market and build profitable, sustainable businesses quickly.
+      A category domain like brazilianwax.education positions a training brand at the center of this
+      demand — whether you sell certification, online courses, or franchise onboarding.
     </p>
   </div>
 </section>

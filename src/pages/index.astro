@@ -1,22 +1,27 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import WhySection from '../components/WhySection.astro';
-import TrainingSection from '../components/TrainingSection.astro';
-import MarketSection from '../components/MarketSection.astro';
 import AcquisitionCTA from '../components/AcquisitionCTA.astro';
+import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import MarketSection from '../components/MarketSection.astro';
+import Nav from '../components/Nav.astro';
+import TrainingSection from '../components/TrainingSection.astro';
+import UseCasesSection from '../components/UseCasesSection.astro';
+import WhySection from '../components/WhySection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CF_IMAGES, cfImageUrl } from '../config/site';
 ---
 
-<BaseLayout>
+<BaseLayout includeFaq path="/" preloadImage={cfImageUrl(CF_IMAGES.heroImageId)}>
   <Nav />
-  <main>
+  <main id="main">
     <Hero />
     <WhySection />
+    <UseCasesSection />
     <TrainingSection />
     <MarketSection />
+    <FaqSection />
     <AcquisitionCTA />
-    <Footer />
   </main>
+  <Footer />
 </BaseLayout>

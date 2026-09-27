@@ -1,62 +1,69 @@
 ---
-import { cfImageUrl, CF_IMAGES } from '../config/site';
+import Icon from './Icon.astro';
+import { cfImageUrl, CF_IMAGES, SITE } from '../config/site';
 
-const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
+const image = cfImageUrl(CF_IMAGES.heroImageId);
+const asking = Number(SITE.askingPrice).toLocaleString('en-US');
 ---
 
 <header class="relative overflow-hidden">
   <div
     class="hero-image absolute inset-0 z-0"
     style={`
-      background-image: url('${heroImage}');
+      background-image: url('${image}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     `}
     aria-hidden="true"
-  ></div>
+  >
+  </div>
   <div
-    class="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/20 to-[#F8F1E9]"
+    class="absolute inset-0 z-[1] bg-gradient-to-b from-black/45 via-black/25 to-[#F8F1E9]"
     aria-hidden="true"
-  ></div>
+  >
+  </div>
 
-  <div class="relative z-[2] max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-14 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 text-center">
+  <div
+    class="relative z-[2] max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-12 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 text-center"
+  >
     <div class="inline-flex items-center gap-x-2 mb-5 sm:mb-6 max-w-full">
       <div
-        class="modern-pill flex items-center gap-x-2 px-3 sm:px-4 py-1 rounded-2xl text-[0.65rem] sm:text-xs font-bold tracking-[0.5px] sm:tracking-[1px]"
+        class="modern-pill modern-pill--on-dark flex items-center gap-x-2 px-3 sm:px-4 py-1.5 rounded-2xl text-[0.65rem] sm:text-xs font-bold tracking-[0.5px] sm:tracking-[1px]"
       >
-        <i class="fa-solid fa-graduation-cap fa-xs shrink-0"></i>
-        <span class="truncate sm:whitespace-normal">PROFESSIONAL TRAINING • BUSINESS STARTUP</span>
+        <Icon name="fa-key" class="w-3.5 h-3.5 shrink-0" />
+        <span class="truncate sm:whitespace-normal">PREMIUM DOMAIN FOR SALE · ${asking}</span>
       </div>
     </div>
 
     <h1 class="domain-name tracking-tighter mb-4 text-white drop-shadow-sm">brazilianwax.education</h1>
 
     <p
-      class="max-w-2xl mx-auto text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-white/95 mb-4 sm:mb-5"
+      class="max-w-2xl mx-auto text-lg sm:text-2xl md:text-3xl font-semibold tracking-tight text-white/95 mb-4 sm:mb-5"
     >
-      The definitive domain for Brazilian waxing<br class="hidden md:block" />training and business education.
+      Own the definitive name for Brazilian waxing<br class="hidden md:block" />training and business
+      education.
     </p>
 
-    <p class="max-w-md mx-auto text-base sm:text-lg text-white/80 mb-8 sm:mb-10 px-1">
-      Master the art of epilation and gain the skills to launch your own profitable Brazilian waxing
-      business.
+    <p class="max-w-md mx-auto text-sm sm:text-lg text-white/80 mb-8 sm:mb-10 px-1">
+      Exact high-intent keywords. Trusted .education TLD. Built for academies, online courses, and
+      salon training brands ready to convert search demand into enrollment.
     </p>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
       <a
-        href="#acquire"
-        class="group w-full sm:w-auto inline-flex items-center justify-center gap-x-3 px-8 sm:px-9 py-3.5 sm:py-4 bg-[#B85C38] hover:bg-[#A04E30] text-white font-semibold text-base sm:text-lg rounded-3xl transition-all active:scale-[0.985] shadow-lg shadow-[#B85C38]/20"
+        href="/acquire/#inquire"
+        class="group w-full sm:w-auto inline-flex items-center justify-center gap-x-3 min-h-12 px-8 sm:px-9 py-3.5 sm:py-4 bg-[#B85C38] hover:bg-[#A04E30] text-white font-semibold text-base sm:text-lg rounded-3xl transition-all active:scale-[0.985] shadow-lg shadow-[#B85C38]/20"
       >
-        <span>Inquire to Acquire</span>
-        <i class="fa-solid fa-arrow-right group-hover:translate-x-0.5 transition-transform"></i>
+        <span>Make an Offer</span>
+        <Icon name="fa-arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
       </a>
 
       <a
-        href="#market"
-        class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 sm:py-4 border border-white/40 hover:bg-white/10 text-white font-semibold text-base sm:text-lg rounded-3xl transition-all"
+        href="#why"
+        class="w-full sm:w-auto inline-flex items-center justify-center min-h-12 px-8 py-3.5 sm:py-4 border border-white/40 hover:bg-white/10 text-white font-semibold text-base sm:text-lg rounded-3xl transition-all"
       >
-        See the Opportunity
+        Why this domain
       </a>
     </div>
   </div>
